@@ -3,497 +3,356 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaurav Dahale | Cyberpunk Architect</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Gaurav Dahale | Architect</title>
     <style>
         :root {
-            --neon-pink: #ff00ff;
-            --neon-blue: #00ffff;
-            --neon-green: #00ff00;
-            --bg-dark: #050505;
-            --card-bg: #111;
-            --grid-color: rgba(0, 255, 255, 0.1);
+            --bg-color: #f5f5f7;
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent-blue: #0071e3;
+            --card-bg: #ffffff;
+            --card-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            --card-radius: 20px;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: #fff;
-            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
-            background-image: 
-                linear-gradient(var(--grid-color) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-            background-size: 50px 50px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Glitch Effect */
-        .glitch {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 4rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            position: relative;
-            color: #fff;
-            text-shadow: 2px 2px var(--neon-pink), -2px -2px var(--neon-blue);
-            animation: glitch 1s infinite;
-        }
-
-
-        .profile-container {
-            margin-bottom: 2rem;
-            position: relative;
-            display: inline-block;
-        }
+        /* Typography */
+        h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; margin-top: 0; }
         
-        .profile-img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            border: 4px solid var(--neon-blue);
-            box-shadow: 0 0 30px var(--neon-blue), inset 0 0 20px var(--neon-pink);
-            object-fit: cover;
-            position: relative;
-            z-index: 10;
-        }
-
-        .profile-container::before {
-            content: '';
-            position: absolute;
-            top: -10px; left: -10px; right: -10px; bottom: -10px;
-            border-radius: 50%;
-            border: 2px dashed var(--neon-pink);
-            animation: spin 10s linear infinite;
-        }
-
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-
         header {
             text-align: center;
-            padding: 4rem 2rem;
-            border-bottom: 2px solid var(--neon-blue);
-            box-shadow: 0 0 20px var(--neon-blue);
-            background: rgba(0,0,0,0.8);
+            padding: 6rem 2rem 4rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .tagline {
-            font-size: 1.5rem;
-            color: var(--neon-green);
-            letter-spacing: 2px;
-            margin-top: 1rem;
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            margin-bottom: 2rem;
         }
 
+        h1 { font-size: 3.5rem; margin-bottom: 0.5rem; color: #1d1d1f; }
+        
+        .role { 
+            font-size: 1.5rem; 
+            color: var(--text-secondary); 
+            font-weight: 500; 
+            margin-bottom: 1.5rem; 
+        }
+
+        .bio {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Grid Layout (Bento Box) */
         .container {
-            max-width: 1200px;
+            max-width: 1080px;
             margin: 0 auto;
             padding: 2rem;
         }
 
-        h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            color: var(--neon-blue);
-            border-left: 5px solid var(--neon-pink);
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            margin-top: 4rem;
             padding-left: 1rem;
-            margin-top: 3rem;
-            text-transform: uppercase;
         }
 
-        /* Cyberpunk Cards */
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
         }
 
+        /* Apple-style Cards */
         .card {
             background: var(--card-bg);
-            border: 1px solid var(--neon-blue);
-            padding: 2rem;
+            border-radius: var(--card-radius);
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
-            transition: transform 0.3s, box-shadow 0.3s;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            border: 1px solid transparent;
-            background: linear-gradient(45deg, var(--neon-pink), transparent, var(--neon-blue)) border-box;
-            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0.5;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 15px var(--neon-blue), 0 0 5px var(--neon-pink);
-        }
-
-        .card h3 {
-            color: var(--neon-pink);
-            font-family: 'Orbitron', sans-serif;
-            margin-top: 0;
-        }
-
-        .status {
-            display: inline-block;
-            background: var(--neon-blue);
-            color: #000;
-            padding: 0.2rem 0.5rem;
-            font-weight: bold;
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-        
-        .status.legacy {
-            background: #555;
-            color: #fff;
-        }
-
-        /* Tech Stack Tags */
-        .tech-stack span {
-            display: inline-block;
-            border: 1px solid var(--neon-green);
-            color: var(--neon-green);
-            padding: 0.2rem 0.8rem;
-            margin: 0.2rem;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            transition: all 0.3s;
-        }
-        .tech-stack span:hover {
-            background: var(--neon-green);
-            color: #000;
-            box-shadow: 0 0 10px var(--neon-green);
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            border-top: 1px solid #333;
-            color: #666;
-            margin-top: 4rem;
-        }
-
-        /* Device Mockups */
-        .mockup-container {
-            width: 100%;
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            background: rgba(0,0,0,0.3);
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Mobile Frame */
-        .mobile-frame {
-            width: 100px;
-            height: 180px;
-            border: 2px solid var(--neon-blue);
-            border-radius: 10px;
-            background: #000;
-            padding: 5px;
-            box-shadow: 0 0 10px var(--neon-blue);
-            position: relative;
-        }
-        .mobile-screen {
-            background: #111;
-            height: 100%;
-            border-radius: 6px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            padding: 5px;
-            gap: 5px;
+            justify-content: space-between;
+            height: 100%;
         }
-        .app-header {
-            height: 15px;
-            background: var(--neon-blue);
-            opacity: 0.8;
-            border-radius: 2px;
+
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-        .app-item {
-            height: 20px;
-            background: #333;
-            border-radius: 2px;
-            width: 100%;
+
+        .card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .card p { color: var(--text-secondary); font-size: 1rem; margin-bottom: 1.5rem; }
+
+        .status {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            display: block;
         }
-        .app-item.short { width: 70%; }
+
+        .status.legacy { color: var(--text-secondary); }
+
+        /* Mockups (Clean/Minimal) */
+        .mockup-container {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            background: #fbfbfd;
+            border-radius: 12px;
+        }
+
+        .mobile-frame {
+            width: 90px;
+            height: 170px;
+            border: 4px solid #e2e2e5;
+            border-radius: 14px;
+            background: #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            overflow: hidden;
+            padding: 4px;
+        }
+        .mobile-screen {
+            background: #fff;
+            height: 100%;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .app-header { height: 12px; background: #f2f2f7; border-radius: 4px; }
+        .app-item { height: 24px; background: #f2f2f7; border-radius: 4px; width: 100%; }
         
-        /* Desktop Frame */
         .desktop-frame {
-            width: 220px;
-            height: 140px;
-            border: 2px solid var(--neon-pink);
-            border-radius: 4px;
-            background: #000;
-            padding-top: 15px;
+            width: 200px;
+            height: 130px;
+            border: 1px solid #d2d2d7;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            padding-top: 18px;
             position: relative;
-            box-shadow: 0 0 10px var(--neon-pink);
         }
         .desktop-frame::before {
-            content: '•••';
+            content: '';
             position: absolute;
-            top: 2px; left: 8px;
-            color: var(--neon-pink);
-            font-size: 12px;
-            letter-spacing: 2px;
+            top: 6px; left: 8px;
+            width: 30px; height: 6px;
+            border-radius: 3px;
+            background: #e2e2e5;
         }
-        .desktop-screen {
-            background: #111;
-            height: 100%;
-            border-radius: 0 0 2px 2px;
-            padding: 10px;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 5px;
-        }
-        .dash-sidebar { background: #222; height: 100%; border-right: 1px solid #444; }
-        .dash-content { display: flex; flex-direction: column; gap: 5px; }
-        .dash-chart { height: 40px; background: linear-gradient(45deg, #333, #444); border-radius: 2px; }
 
+        /* Tech Tags */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+        }
+        .tech-stack span {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        /* Links */
+        a { color: var(--accent-blue); text-decoration: none; font-weight: 500; }
+        a:hover { text-decoration: underline; }
+
+        .btn-cta {
+            display: inline-block;
+            background: #0071e3;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 24px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        .btn-cta:hover { background: #0077ed; text-decoration: none; }
+
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid #e2e2e5;
+            margin-top: 4rem;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="profile-container">
-            <img src="assets/img/profile.jpg" alt="Gaurav Dahale" class="profile-img">
-        </div>
-        <div class="glitch" data-text="GAURAV DAHALE">GAURAV DAHALE</div>
-        <div class="tagline">TEAM LEAD & ARCHITECT // 12+ YEARS EXPERIENCE</div>
-        <p style="max-width: 600px; margin: 1rem auto; color: #aaa; font-size: 1.1rem; line-height: 1.6;">
-            Seasoned technological leader orchestrating high-performance systems across Mobile (Android/iOS), Web (Angular/React), and Cloud (GCP/Firebase). Transforming complex enterprise requirements into scalable architectures.
+        <img src="assets/img/profile.jpg" alt="Gaurav Dahale" class="profile-img">
+        <h1>Gaurav Dahale</h1>
+        <div class="role">Team Lead & Architect</div>
+        <p class="bio">
+            Orchestrating high-performance systems across Mobile, Web, and Cloud.<br>
+            12+ years of experience transforming complex requirements into scalable, elegant architectures.
         </p>
     </header>
 
     <div class="container">
         
-        <div style="text-align: center; margin-bottom: 3rem;">
-            <a href="https://github.com/gauravdahale" class="status" style="background: var(--neon-pink); color: #fff; text-decoration: none; padding: 1rem 2rem; font-size: 1.2rem; border: 2px solid #fff;">
-                ⚡ VIEW FULL GITHUB PROFILE (25+ REPOS)
-            </a>
-            <p style="color: #666; margin-top: 1rem;">Open Source Contributions since 2016</p>
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <a href="https://github.com/gauravdahale" class="btn-cta">View GitHub Profile (25+ Repos)</a>
         </div>
 
-        <h2>// ACTIVE PROTOCOLS</h2>
+        <h2 class="section-title">Current Focus</h2>
         <div class="project-grid">
             <div class="card">
-                <span class="status">ONLINE</span>
-                <h3>AKOLA DIRECTORY (REBOOT)</h3>
-                <div class="mockup-container">
-                    <div class="mobile-frame">
-                        <div class="mobile-screen">
-                            <div class="app-header"></div>
-                            <div class="app-item" style="background: var(--neon-blue); opacity: 0.3;"></div>
-                            <div class="app-item"></div>
-                            <div class="app-item"></div>
-                            <div class="app-item short"></div>
+                <div>
+                    <span class="status">Rebooting</span>
+                    <h3>Akola Directory</h3>
+                    <div class="mockup-container">
+                        <div class="mobile-frame">
+                            <div class="mobile-screen">
+                                <div class="app-header" style="background: #0071e3;"></div>
+                                <div class="app-item"></div>
+                                <div class="app-item"></div>
+                                <div class="app-item" style="width: 60%"></div>
+                            </div>
                         </div>
                     </div>
+                    <p>The next generation of local commerce. Built with Flutter & Dart for seamless cross-platform performance.</p>
                 </div>
-                <p>Next-gen neural network for local commerce. Built with Flutter & Dart.</p>
                 <div class="tech-stack">
-                    <span>FLUTTER</span>
-                    <span>DART</span>
-                    <span>POSTGRESQL</span>
+                    <span>Flutter</span>
+                    <span>Dart</span>
+                    <span>PostgreSQL</span>
                 </div>
             </div>
 
             <div class="card">
-                <span class="status">ONLINE</span>
-                <h3>ACCESSLIFE ADMIN</h3>
-                <div class="mockup-container">
-                    <div class="desktop-frame">
-                        <div class="desktop-screen">
-                            <div class="dash-sidebar"></div>
-                            <div class="dash-content">
-                                <div class="dash-chart" style="background: var(--neon-pink); opacity: 0.2;"></div>
-                                <div class="app-item"></div>
-                                <div class="app-item"></div>
+                <div>
+                    <span class="status">Deployed</span>
+                    <h3>Accesslife Admin</h3>
+                    <div class="mockup-container">
+                        <div class="desktop-frame">
+                            <div style="background:#f5f5f7; height:100%; border-radius:0 0 6px 6px; padding:10px;">
+                                <div style="width:30%; height:100%; background:#e2e2e5; float:left; border-radius:4px;"></div>
+                                <div style="width:65%; height:40px; background:#0071e3; float:right; border-radius:4px; opacity:0.8;"></div>
                             </div>
                         </div>
                     </div>
+                    <p>Operational portal for Access Life NGO. Real-time data synchronization via Firebase.</p>
                 </div>
-                <p>Secure operational portal for NGO infrastructure. Real-time data sync via Firebase.</p>
                 <div class="tech-stack">
-                    <span>ANGULAR</span>
-                    <span>FIREBASE</span>
-                    <span>TYPESCRIPT</span>
+                    <span>Angular</span>
+                    <span>Firebase</span>
+                    <span>TypeScript</span>
                 </div>
             </div>
 
             <div class="card">
-                <span class="status">CONCEPT</span>
-                <h3>PG COMMUNITY</h3>
-                <div class="mockup-container">
-                    <div class="mobile-frame" style="border-color: var(--neon-green); box-shadow: 0 0 10px var(--neon-green);">
-                        <div class="mobile-screen">
-                            <div class="app-header" style="background: var(--neon-green);"></div>
-                            <div style="display:flex; gap:2px;">
-                                <div class="app-item" style="width:30px; height:30px; border-radius:50%;"></div>
-                                <div class="app-item" style="height:30px;"></div>
+                <div>
+                    <span class="status">Concept</span>
+                    <h3>PG Community</h3>
+                    <div class="mockup-container">
+                        <div class="mobile-frame">
+                            <div class="mobile-screen">
+                                <div class="app-header" style="background: #34c759;"></div>
+                                <div style="display:flex; gap:4px; padding:4px;">
+                                    <div style="width:20px; height:20px; border-radius:50%; background:#e2e2e5;"></div>
+                                    <div style="width:40px; height:8px; background:#e2e2e5; margin-top:6px;"></div>
+                                </div>
                             </div>
-                            <div class="app-item" style="height:60px;"></div>
                         </div>
                     </div>
+                    <p>Decentralized community engagement platform connecting local nodes.</p>
                 </div>
-                <p>Decentralized community engagement platform. Connecting nodes in the local grid.</p>
                 <div class="tech-stack">
-                    <span>NEXT.JS</span>
-                    <span>SUPABASE</span>
+                    <span>Next.js</span>
+                    <span>Supabase</span>
                 </div>
             </div>
         </div>
 
-        <h2>// OPEN SOURCE MODULES</h2>
+        <h2 class="section-title">Open Source & Libraries</h2>
         <div class="project-grid">
             <div class="card">
-                <span class="status">NPM PACKAGE</span>
-                <h3>UPIQR</h3>
-                <div class="mockup-container">
-                    <div class="desktop-frame" style="border-color: #f1c40f; box-shadow: 0 0 10px #f1c40f;">
-                        <div class="desktop-screen">
-                            <div style="font-family: monospace; color: #f1c40f; font-size: 10px;">
-                                > npm install upiqr<br>
-                                > Generating QR...<br>
-                                > [||||||||||] 100%
-                            </div>
-                        </div>
-                    </div>
+                <div>
+                    <span class="status">NPM Package</span>
+                    <h3>UPIQR</h3>
+                    <p>TypeScript library for generating NPCI compliant UPI QR codes & intent links.</p>
                 </div>
-                <p>TypeScript library generating NPCI's UPI QR codes (Base64) & intent links for payments.</p>
                 <div class="tech-stack">
-                    <span>TYPESCRIPT</span>
+                    <span>TypeScript</span>
                     <span>NPM</span>
-                    <span>NODE.JS</span>
                 </div>
-                <div style="margin-top:1rem;">
-                    <a href="https://github.com/gauravdahale/upiqr" target="_blank" style="color: #f1c40f; text-decoration: none; font-weight: bold;">[VIEW SOURCE]</a>
-                </div>
+                <a href="https://github.com/gauravdahale/upiqr" style="margin-top:1rem; display:block;">View Source ↗</a>
             </div>
 
             <div class="card">
-                <span class="status">UI LIBRARY</span>
-                <h3>SYNTH ANDROID</h3>
-                <div class="mockup-container">
-                    <div class="mobile-frame" style="border-color: #e74c3c; box-shadow: 0 0 10px #e74c3c;">
-                        <div class="mobile-screen" style="background: #2c3e50;">
-                            <div style="margin: 20px auto; width: 60px; height: 60px; border-radius: 50%; background: #2c3e50; box-shadow: 5px 5px 10px #233140, -5px -5px 10px #354b60;"></div>
-                            <div style="margin: 10px auto; width: 80%; height: 10px; border-radius: 5px; background: #2c3e50; box-shadow: inset 2px 2px 5px #233140, inset -2px -2px 5px #354b60;"></div>
-                        </div>
-                    </div>
+                <div>
+                    <span class="status">UI Framework</span>
+                    <h3>Synth Android</h3>
+                    <p>Neumorphic UI component library for Android. Fork of CRED's design system.</p>
                 </div>
-                <p>Neumorphic UI component library for Android. Fork of CRED's design system.</p>
                 <div class="tech-stack">
-                    <span>ANDROID</span>
-                    <span>KOTLIN</span>
-                    <span>UI/UX</span>
+                    <span>Kotlin</span>
+                    <span>Android UI</span>
                 </div>
-                <div style="margin-top:1rem;">
-                    <a href="https://github.com/gauravdahale/synth-android" target="_blank" style="color: #e74c3c; text-decoration: none; font-weight: bold;">[VIEW SOURCE]</a>
-                </div>
+                <a href="https://github.com/gauravdahale/synth-android" style="margin-top:1rem; display:block;">View Source ↗</a>
             </div>
-
+            
             <div class="card">
-                <span class="status">NATIVE APP</span>
-                <h3>AKOLA DIRECTORY (DARK)</h3>
-                <div class="mockup-container">
-                    <div class="mobile-frame">
-                        <div class="mobile-screen">
-                            <div class="app-header" style="background: #333;"></div>
-                            <div class="app-item"></div>
-                            <div class="app-item"></div>
-                        </div>
-                    </div>
+                <div>
+                    <span class="status">Legacy App</span>
+                    <h3>Akola Smart City</h3>
+                    <p>Original directory mainframe serving 10k+ users. Android Java implementation.</p>
                 </div>
-                <p>Native Android implementation using Kotlin with Dark Mode architecture.</p>
                 <div class="tech-stack">
-                    <span>KOTLIN</span>
-                    <span>ANDROID</span>
-                </div>
-                <div style="margin-top:1rem;">
-                    <a href="https://github.com/gauravdahale/AkolaDirectoryDark-new" target="_blank" style="color: var(--neon-blue); text-decoration: none; font-weight: bold;">[VIEW SOURCE]</a>
+                    <span>Java</span>
+                    <span>SQLite</span>
                 </div>
             </div>
         </div>
 
-        <h2>// LEGACY SYSTEMS (ARCHIVED)</h2>
-        <div class="project-grid">
-            <div class="card">
-                <span class="status legacy">OFFLINE</span>
-                <h3>AKOLA SMART CITY</h3>
-                <div class="mockup-container">
-                    <div class="mobile-frame" style="border-color: #555; box-shadow: none;">
-                        <div class="mobile-screen" style="opacity: 0.5;">
-                            <div class="app-header" style="background: #555;"></div>
-                            <div class="app-item"></div>
-                            <div class="app-item"></div>
-                            <div class="app-item"></div>
-                        </div>
-                    </div>
-                </div>
-                <p>Original directory mainframe. Served 10k+ users across the district.</p>
-                <div class="tech-stack">
-                    <span>ANDROID (JAVA)</span>
-                    <span>SQLITE</span>
-                </div>
-            </div>
-
-            <div class="card">
-                <span class="status legacy">OFFLINE</span>
-                <h3>VARHADI SHABDKOSH</h3>
-                <div class="mockup-container">
-                    <div class="mobile-frame" style="border-color: #555; box-shadow: none;">
-                        <div class="mobile-screen" style="opacity: 0.5;">
-                            <div class="app-header" style="background: #555;"></div>
-                            <div class="app-item" style="margin-top:20px;"></div>
-                            <div class="app-item"></div>
-                            <div class="app-item short"></div>
-                        </div>
-                    </div>
-                </div>
-                <p>Linguistic preservation module. Digital archive of the Varhadi dialect.</p>
-                <div class="tech-stack">
-                    <span>ANDROID</span>
-                    <span>TEXT PROCESSING</span>
-                </div>
-            </div>
-        </div>
-
-        <h2>// WEAPONRY</h2>
-        <div class="tech-stack" style="text-align: center; margin-top: 2rem;">
-            <span>JAVA</span>
-            <span>FLUTTER</span>
-            <span>DART</span>
-            <span>ANGULAR</span>
-            <span>REACT</span>
-            <span>FIREBASE</span>
-            <span>GCP (CLOUD)</span>
-            <span>ANDROID</span>
-            <span>IOS</span>
-            <span>POSTGRESQL</span>
-            <span>TYPESCRIPT</span>
-            <span>LINUX</span>
-            <span>DOCKER</span>
-            <span>JIRA</span>
-            <span>SYSTEM DESIGN</span>
+        <h2 class="section-title">Expertise</h2>
+        <div class="tech-stack" style="justify-content: center; gap: 12px;">
+            <span style="font-size: 0.9rem; padding: 8px 16px;">Java</span>
+            <span style="font-size: 0.9rem; padding: 8px 16px;">Flutter & Dart</span>
+            <span style="font-size: 0.9rem; padding: 8px 16px;">Angular</span>
+            <span style="font-size: 0.9rem; padding: 8px 16px;">React</span>
+            <span style="font-size: 0.9rem; padding: 8px 16px;">GCP / Firebase</span>
+            <span style="font-size: 0.9rem; padding: 8px 16px;">Android / iOS</span>
+            <span style="font-size: 0.9rem; padding: 8px 16px;">System Design</span>
         </div>
 
     </div>
 
     <footer>
-        &copy; 2026 GAURAV DAHALE // OPENCLAW SYSTEM // END OF LINE
+        &copy; 2026 Gaurav Dahale.
     </footer>
 
 </body>
