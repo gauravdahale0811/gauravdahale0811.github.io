@@ -6,13 +6,14 @@
     <title>Gaurav Dahale | Architect</title>
     <style>
         :root {
-            --bg-color: #ffffff; /* Pure white background */
-            --text-primary: #0a1128; /* Dark blue text for strong contrast */
-            --text-secondary: #3b4a62; /* Medium blue-grey for secondary text */
-            --accent-blue: #007bff; /* Vibrant blue for accents and links */
-            --card-bg: #f8f8fa; /* Off-white for card backgrounds */
-            --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); /* Soft shadow for depth */
+            --bg-color: #0d1117; /* GitHub Dark background */
+            --text-primary: #e6edf3; /* Light grey text for strong contrast */
+            --text-secondary: #8b949e; /* Medium grey for secondary text */
+            --accent-blue: #2f81f7; /* Vibrant blue for accents and links */
+            --card-bg: #161b22; /* Dark grey for card backgrounds */
+            --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.4); /* Stronger shadow for depth in dark mode */
             --card-radius: 12px;
+            --border-color: #30363d; /* Subtle border for dark mode cards */
         }
 
         body {
@@ -44,7 +45,7 @@
             margin-bottom: 2rem;
         }
 
-        h1 { font-size: 3.5rem; margin-bottom: 0.5rem; color: #1d1d1f; }
+        h1 { font-size: 3.5rem; margin-bottom: 0.5rem; color: #ffffff; }
         
         .role { 
             font-size: 1.5rem; 
@@ -87,7 +88,8 @@
             border-radius: var(--card-radius);
             padding: 2.5rem;
             box-shadow: var(--card-shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             position: relative;
             overflow: hidden;
             display: flex;
@@ -98,7 +100,8 @@
 
         .card:hover {
             transform: scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            border-color: #484f58;
         }
 
         .card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
@@ -123,38 +126,39 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 2rem;
-            background: #e9f5fd; /* Very light blue background for mockups */
+            background: #1c2128; /* Darker blue/grey background for mockups */
             border-radius: 12px;
+            border: 1px solid var(--border-color);
         }
 
         .mobile-frame {
             width: 90px;
             height: 170px;
-            border: 4px solid #e2e2e5;
+            border: 4px solid #30363d;
             border-radius: 14px;
-            background: #fff;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            background: #0d1117;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
             overflow: hidden;
             padding: 4px;
         }
         .mobile-screen {
-            background: #fff;
+            background: #0d1117;
             height: 100%;
             border-radius: 8px;
             display: flex;
             flex-direction: column;
             gap: 6px;
         }
-        .app-header { height: 12px; background: #f2f2f7; border-radius: 4px; }
-        .app-item { height: 24px; background: #f2f2f7; border-radius: 4px; width: 100%; }
+        .app-header { height: 12px; background: #21262d; border-radius: 4px; }
+        .app-item { height: 24px; background: #21262d; border-radius: 4px; width: 100%; }
         
         .desktop-frame {
             width: 200px;
             height: 130px;
-            border: 1px solid #d2d2d7;
+            border: 1px solid #30363d;
             border-radius: 8px;
-            background: #fff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            background: #0d1117;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             padding-top: 18px;
             position: relative;
         }
@@ -164,7 +168,7 @@
             top: 6px; left: 8px;
             width: 30px; height: 6px;
             border-radius: 3px;
-            background: #e2e2e5;
+            background: #30363d;
         }
 
         /* Tech Tags */
@@ -177,8 +181,9 @@
         .tech-stack span {
             font-size: 0.75rem;
             font-weight: 600;
-            background: #e9f5fd; /* Light blue background for tags */
-            color: #0a1128; /* Dark text on light blue */
+            background: #1c2128; /* Darker background for tags */
+            color: #e6edf3; /* Light text */
+            border: 1px solid var(--border-color);
             padding: 4px 10px;
             border-radius: 20px;
         }
@@ -204,7 +209,7 @@
             padding: 4rem 2rem;
             color: var(--text-secondary);
             font-size: 0.85rem;
-            border-top: 1px solid #e2e2e5;
+            border-top: 1px solid var(--border-color);
             margin-top: 4rem;
         }
     </style>
